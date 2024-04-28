@@ -90,8 +90,13 @@ a {
 .image-block{
     display:block;
     max-width: 100%;
+    max-height: 100%;
     margin-bottom: 12px;
+    border-radius: 20px; /* ปรับค่าตามความต้องการ */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* ปรับค่าตามความต้องการ */
 }
+
+
 
 .content-section{
     padding: 64px 16px;
@@ -242,8 +247,8 @@ input[type="email"]:focus{
     margin-bottom: 24px;
 }
 
-/*Food*/
-.food-title a:not(:hover){
+/*Game*/
+.game-title a:not(:hover){
     color: #111111;
     text-decoration: none;
 }

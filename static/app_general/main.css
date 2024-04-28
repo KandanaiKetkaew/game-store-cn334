@@ -90,8 +90,11 @@ a {
 .image-block{
     display:block;
     max-width: 100%;
+    max-height: 100%;
     margin-bottom: 12px;
 }
+
+
 
 .content-section{
     padding: 64px 16px;
@@ -242,8 +245,8 @@ input[type="email"]:focus{
     margin-bottom: 24px;
 }
 
-/*Food*/
-.food-title a:not(:hover){
+/*Game*/
+.game-title a:not(:hover){
     color: #111111;
     text-decoration: none;
 }

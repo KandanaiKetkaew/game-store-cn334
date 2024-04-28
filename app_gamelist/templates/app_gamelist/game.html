@@ -10,16 +10,16 @@
 
             <img class="image-block" src="{% static game.image_relative_url %}" alt="">
             <div>
-                <h3>{{game.title}}</h3>
-            <p>Price : {{ game.price|floatformat:'g' }} USD</p>
-            <p>Release Year : {{game.initial_release|date:'Y'}}</p>
+                <h1 class="text-center game-title">{{game.title}}</h1>
+                <h3 class="text-center">Price : {{ game.price|floatformat:'g' }} USD</h3>
+                <h3 class="text-center">Release Year : {{game.initial_release|date:'Y'}}</h3>
 
-            <p>Synopsis : {{ game.description }}</p>
-            <p class="text-center">
-                <a class="button button-primary" href="{% url 'register' %}">Register</a>
-            </p>
+                <h3 class="text-center">Synopsis : {{ game.description }}</h3>
+                <h3 class="text-center">
+                    <a class="button button-primary" href="{% url 'register' %}">Register</a>
+                </h3>
             </div>
-            
+
         </div>
 
         {% else %}

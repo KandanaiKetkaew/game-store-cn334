@@ -13,7 +13,7 @@
                 <a href="{% url 'game' game.id %}">
                     <img class="image-block" src="{% static game.image_relative_url %}" alt="">
                 </a>
-                <h5 class="food-title">
+                <h5 class="game-title">
                     <a href="{% url 'game' game.id %}">{{ game.title }}</a>
                 </h5>
                 <p>Price: {{ game.price|floatformat:'g' }} USD</p>
