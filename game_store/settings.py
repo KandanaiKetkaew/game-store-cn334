@@ -88,12 +88,6 @@ DATABASES = {
         "PASSWORD": os.getenv('DB_PASSWORD'),
         "HOST": os.getenv('DB_HOST'),
         "PORT": os.getenv('DB_PORT'),
-        "OPTIONS": {
-            "autocommit": True,
-            "charset": "utf8mb4",
-            "collation": "utf8mb4_general_ci",
-            "display_name": "MyDatabase",  # รับอาร์กิวเมนต์ที่ชื่อเป็น display_name
-        },
     }
 }
 
