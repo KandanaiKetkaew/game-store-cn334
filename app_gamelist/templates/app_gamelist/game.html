@@ -14,7 +14,7 @@
             <p>Price : {{ game.price|floatformat:'g' }} USD</p>
             <p>Release Year : {{game.initial_release|date:'Y'}}</p>
 
-            <p>Description " {{ game.description }}</p>
+            <p>Synopsis : {{ game.description }}</p>
             <p class="text-center">
                 <a class="button button-primary" href="{% url 'register' %}">Register</a>
             </p>
