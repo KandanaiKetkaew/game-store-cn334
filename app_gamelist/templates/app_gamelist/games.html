@@ -18,6 +18,7 @@
                 </h5>
                 <p>Price: {{ game.price|floatformat:'g' }} USD</p>
                 <p>Release Year: {{ game.initial_release|date:'Y' }}</p>
+                <p>Genre : {{game.genre}}</p>
             </div>
             {% endfor %}
         </div>
