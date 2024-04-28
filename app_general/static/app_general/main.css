@@ -252,3 +252,43 @@ input[type="email"]:focus{
     color: #111111;
     text-decoration: none;
 }
+
+/* เพิ่ม media query เพื่อรองรับการแสดงผลบนอุปกรณ์ที่มีขนาดหน้าจอเล็ก */
+
+@media screen and (max-width: 600px) {
+    html {
+        font-size: 14px; 
+    }
+
+    h1 {
+        font-size: 28px; 
+    }
+
+    h2 {
+        font-size: 24px; 
+    }
+
+    h3 {
+        font-size: 20px; 
+    }
+
+    p {
+        font-size: 14px; 
+    }
+
+    .content-section {
+        padding: 32px 16px; 
+    }
+
+    .content-container-narrow {
+        max-width: 100%; 
+    }
+
+    .grid {
+        grid-template-columns: 1fr; 
+    }
+
+    .site-header {
+        height: auto; 
+    }
+}
