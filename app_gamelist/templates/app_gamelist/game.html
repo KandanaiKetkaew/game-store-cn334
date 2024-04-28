@@ -1,0 +1,45 @@
+{%extends 'app_general/components/base.html'%}
+{% load static %}
+{% block site_title %} {{game.title}} | {% endblock %}
+
+{%block content%}
+<section class="content-section content-section-single">
+    <div class="content-container">
+        {% if game is not None%}
+        <div class="grid grid-2">
+
+            <img class="image-block" src="{% static game.image_relative_url %}" alt="">
+            <div>
+                <h3>{{game.title}}</h3>
+            <p>Price : {{ game.price|floatformat:'g' }} USD</p>
+            <p>Release Year : {{game.initial_release|date:'Y'}}</p>
+
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores nihil repellat delectus omnis quae
+                rerum minima odit maiores velit at voluptate, id impedit perspiciatis. Omnis, perferendis quaerat.
+                Prowvident aliquam reiciendis vel voluptatibus ex molestiae minus culpa consectetur porro sapiente sint
+                maiores iste aliquid dicta ad exercitationem officia quasi quod dolores dignissimos iusto, tempora neque
+                beatae mollitia? Nihil vitae quam cupiditate quae repellat praesentium repudiandae ex animi illum sed
+                nisi, ipsa, reprehenderit quisquam consequuntur pariatur repellendus voluptas sit magni accusantium
+                explicabo! Delectus, iure. Laboriosam perspiciatis maxime similique qui. Autem officiis necessitatibus
+                placeat repellendus sapiente, libero recusandae doloremque praesentium voluptates illum odit similique
+                nihil beatae hic? Necessitatibus, officia perferendis similique totam a fugiat maxime. Suscipit et
+                reprehenderit consequatur, asperiores ex dolorem nihil sed praesentium repudiandae exercitationem
+                officia similique omnis maxime sit aliquam, odio nesciunt quas minus facilis sapiente! Nostrum sit saepe
+                nemo. Modi nihil optio sit delectus beatae. Cum earum nesciunt quo?</p>
+            <p class="text-center">
+                <a class="button button-primary" href="{% url 'register' %}">Register</a>
+            </p>
+            </div>
+            
+        </div>
+
+        {% else %}
+        <p>This game is not found</p>
+
+        {% endif %}
+    </div>
+</section>
+
+
+
+{% endblock %}

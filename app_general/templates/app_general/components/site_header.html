@@ -1,0 +1,9 @@
+{% load static %}
+<header class="site-header">
+    <a class="site-header-item site-header-brand" href="{%url 'homepage'%}">
+        <img src="{% static 'app_general/joy.png' %}" alt=""style="width: 70px; height: 70px;">
+        <span>ArtGameStore</span>
+    </a>
+    <a class="site-header-item" href="{%url 'games'%}">Games</a>
+    <a class="site-header-item" href="{%url 'about'%}">About us</a>
+</header>

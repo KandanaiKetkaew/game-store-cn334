@@ -1,0 +1,38 @@
+{%extends 'app_general/components/base.html'%}
+{% load static %}
+
+
+{%block content%}
+<section class="home-landing-section">
+    <h1 class="homelanding-text">ArtGameStore</h1>
+    <h5 class="homelanding-text">"BUY PLAY FUN"</h5>
+    <h6 class="homelanding-text">Lorem ipsum dolor sit amet consectetur.</h6>
+    <p>
+        <a class="button" href="{% url 'games' %}">All Games</a>
+        <a class="button button-primary" href="{% url 'register' %}">Register</a>
+    </p>
+</section>
+
+<section class="content-section">
+    <div class="content-container">
+        <h4 class="content-title text-center">Why ArtGameStore ❓❓❓</h4>
+        <div class="grid grid-3" >
+            <div>
+                <img class="image-block" src="{% static 'app_general/devil.jpg' %}" alt="">
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+            <div>
+                <img class="image-block" src="{% static 'app_general/FAR.jpg' %}" alt="">
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+            <div>
+                <img class="image-block" src="{% static 'app_general/spire.png' %}" alt="">
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+        </div>
+        <p class="text-center">
+            <a class="button" href="{% url 'about' %}">About ArtGameStore</a>
+        </p>
+    </div>
+</section>
+{% endblock %}
