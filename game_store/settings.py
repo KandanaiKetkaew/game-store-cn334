@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'app_general.apps.AppGeneralConfig',
     'app_gamelist.apps.AppGamelistConfig',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
