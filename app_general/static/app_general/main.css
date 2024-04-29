@@ -256,6 +256,12 @@ input[type="email"]:focus{
 /* เพิ่ม media query เพื่อรองรับการแสดงผลบนอุปกรณ์ที่มีขนาดหน้าจอเล็ก */
 
 @media screen and (max-width: 600px) {
+
+
+    .content-title {
+        margin-top: 0px;
+    }
+
     html {
         font-size: 14px; 
     }

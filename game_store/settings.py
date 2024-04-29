@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'app_general.apps.AppGeneralConfig',
     'app_gamelist.apps.AppGamelistConfig',
     'whitenoise.runserver_nostatic',
+    'app_user.apps.AppUserConfig',
+    
 ]
 
 MIDDLEWARE = [
@@ -140,3 +142,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Auth
+
+LOGIN_REDIRECT_URL = "homepage"
