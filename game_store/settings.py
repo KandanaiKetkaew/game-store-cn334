@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG') == 'True'
 
 production_host = os.getenv('PRODUCTION_HOST')
-ALLOWED_HOSTS = [production_host] if production_host is not None else []
+ALLOWED_HOSTS = [production_host] if production_host is not None else ["127.0.0.1"]
 
 
 # Application definition
@@ -149,7 +149,11 @@ LOGIN_REDIRECT_URL = "homepage"
 LOGOUT_REDIRECT_URL = "homepage"
 LOGIN_URL = "login"
 AUTH_USER_MODEL = "app_user.CustomUser"
-
+AUTHENTICATION_BACKENDS = [
+    "app_user.utils.auth_email_backend.EmailBackend",
+    "django.contrib.auth.backends.ModelBackend"
+]
 # Email
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = BASE_DIR / "test_inbox"
+
