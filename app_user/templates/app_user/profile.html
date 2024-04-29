@@ -5,11 +5,8 @@
 {%block content%}
 <section class="content-section content-section-single">
     <div class="content-container content-container-narrow">
-        <h3 class="content-title">{{ user.username }}'s Dashboard</h3>
-        <p>
-            <a href="{% url 'dashboard' %}">Dashboard</a>
-            <a href="{% url 'profile' %}">User Info</a>
-        </p>
+        <h3 class="content-title">{{ user.username }}'s Profile</h3>
+    
         
         <h5 class="text-center" style="margin-top: 35px;">User Info</h5>
         <form action="{% url 'profile' %}" method="post">
