@@ -1,0 +1,64 @@
+{%extends 'app_general/components/base.html'%}
+
+{% block site_title %}Profile | {% endblock %}
+
+{%block content%}
+<section class="content-section content-section-single">
+    <div class="content-container content-container-narrow">
+        <h3 class="content-title">{{ user.username }}'s Dashboard</h3>
+        <p>
+            <a href="{% url 'dashboard' %}">Dashboard</a>
+            <a href="{% url 'profile' %}">User Info</a>
+        </p>
+        
+        <h5 class="text-center" style="margin-top: 35px;">User Info</h5>
+        <form action="{% url 'profile' %}" method="post">
+            {% csrf_token %}
+            <div class="form-field">
+                {{ form.first_name.label_tag }}
+                {{ form.first_name }}
+                {{ form.first_name.errors }}
+            </div>
+            <div class="form-field">
+                {{ form.last_name.label_tag }}
+                {{ form.last_name }}
+                {{ form.last_name.errors }}
+            </div>
+            <div class="form-field">
+                {{ extended_form.address.label_tag }}
+                {{ extended_form.address }}
+                {{ extended_form.address.errors }}
+            </div>
+            <div class="form-field">
+                {{ extended_form.phone.label_tag }}
+                {{ extended_form.phone }}
+                {{ extended_form.phone.errors }}
+            </div>
+            
+            <p class="text-center">
+                <button class="button button-primary" type="submit">Save</button>
+            </p>
+        </form>
+    </div>
+
+</section>
+
+<style>
+    input[type="text"], textarea {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+    }
+</style>
+
+
+
+
+
+
+{% endblock %}

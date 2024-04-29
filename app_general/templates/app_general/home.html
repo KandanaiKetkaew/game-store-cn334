@@ -1,7 +1,6 @@
 {%extends 'app_general/components/base.html'%}
 {% load static %}
 
-
 {%block content%}
 <section class="home-landing-section">
     <h1 class="homelanding-text">ArtGameStore</h1>
@@ -9,7 +8,11 @@
     <h6 class="homelanding-text">Discover a World of Gaming Excitement!</h6>
     <p>
         <a class="button" href="{% url 'games' %}">All Games</a>
-        <a class="button button-primary" href="{% url 'register' %}">Register</a>
+        {% if user.is_authenticated %}
+            <!-- User is authenticated (logged in) -->
+        {% else %}
+            <a class="button button-primary" href="{% url 'createacc' %}">Create Account</a>
+        {% endif %}
     </p>
 </section>
 

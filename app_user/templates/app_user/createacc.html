@@ -1,11 +1,11 @@
-{%extends 'app_general/components/base.html'%}
+{% extends 'app_general/components/base.html' %}
 
 {% block site_title %}Create Account | {% endblock %}
 
-{%block content%}
+{% block content %}
 <section class="content-section content-section-single">
-    <div class="content-container">
-        <h2 class="content-title">Create Account</h2>
+    <div class="content-container content-container-narrow">
+        <h2 class="content-title text-center" style="margin-top: 50px;">Create Account</h2>
         <form action="{% url 'createacc' %}" method="post">
             {% csrf_token %}
             <div class="form-field">
@@ -20,19 +20,49 @@
             </div>
             <div class="form-field">
                 {{ form.password1.label_tag }}
-                {{ form.password1 }}
+                <input type="password" name="{{ form.password1.name }}" id="{{ form.password1.id_for_label }}">
                 {{ form.password1.errors }}
             </div>
             <div class="form-field">
                 {{ form.password2.label_tag }}
-                {{ form.password2 }}
+                <input type="password" name="{{ form.password2.name }}" id="{{ form.password2.id_for_label }}">
                 {{ form.password2.errors }}
             </div>
-            <p>
+            
+            <p class="text-center">
                 <button class="button button-primary" type="submit">Create Account</button>
             </p>
         </form>
+        <p class="text-center">
+            <a href="{% url 'login' %}">Log in</a>
+        </p>
     </div>
-
 </section>
+
+<style>
+    input[type="password"],
+    input[type="text"] {
+        width: calc(100% - 20px); 
+        box-sizing: border-box;
+        margin-bottom: 0px; 
+        padding: 8px; 
+        border: 1px solid #ccc; 
+        border-radius: 5px; 
+        outline: none; 
+    }
+    
+    input[type="email"] {
+        width: calc(100% - 20px); 
+        box-sizing: border-box;
+        margin-bottom: 0px; 
+        padding: 8px; 
+        border: 1px solid #ccc; 
+        border-radius: 5px; 
+        outline: none; 
+    }
+</style>
+
+
+
+
 {% endblock %}
