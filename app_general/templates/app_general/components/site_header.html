@@ -1,9 +1,29 @@
 {% load static %}
 <header class="site-header">
-    <a class="site-header-item site-header-brand" href="{%url 'homepage'%}">
-        <img src="{% static 'app_general/joy.png' %}" alt=""style="width: 70px; height: 70px;">
+    <a class="site-header-item site-header-brand" href="{% url 'homepage' %}">
+        <img src="{% static 'app_general/joy.png' %}" alt="" style="width: 70px; height: 70px;">
         <span>ArtGameStore</span>
     </a>
-    <a class="site-header-item" href="{%url 'games'%}">Games</a>
-    <a class="site-header-item" href="{%url 'about'%}">About us</a>
+    <a class="site-header-item" href="{% url 'games' %}">
+        <span>Games</span>
+    </a>
+    <a class="site-header-item" href="{% url 'about' %}">
+        <span>About us</span>
+    </a>
+    {% if user.is_authenticated %}
+        <a class="site-header-item" href="#">
+            <span>{{ user.username }}</span>
+        </a>
+        <form class="site-header-item" action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" style="border: none; background: none; cursor: pointer;">Log out</button>
+        </form>
+    {% else %}
+        <a class="site-header-item" href="{% url 'login' %}">
+            <span>Log in</span>
+        </a>
+        <a class="site-header-item" href="{% url 'createacc' %}">
+            <span>Create Account</span>
+        </a>
+    {% endif %}
 </header>
