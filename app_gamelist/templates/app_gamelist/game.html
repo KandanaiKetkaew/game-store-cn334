@@ -2,7 +2,7 @@
 {% load static %}
 {% block site_title %} {{game.title}} | {% endblock %}
 
-{%block content%}
+{% comment %} {%block content%}
 <section class="content-section content-section-single">
     <div class="content-container">
         {% if game is not None%}
@@ -16,8 +16,9 @@
                 <h3 class="text-center">Release Year : {{game.initial_release|date:'Y'}}</h3>
 
                 <h3 class="text-center">Synopsis : {{ game.description }}</h3>
+                
                 <h3 class="text-center">
-                    <a class="button button-primary" href="{% url 'register' %}">Register</a>
+                    <a id="add-to-cart-btn" class="button button-primary" >Add to cart</a>
                 </h3>
             </div>
 
@@ -29,7 +30,75 @@
         {% endif %}
     </div>
 </section>
+<script>
+    document.getElementById("add-to-cart-btn").addEventListener("click", function() {
+        // รับข้อมูลรูปภาพและราคาของเกม
+        var imageUrl = "{{ game.image_relative_url }}";
+        var price = "{{ game.price }}";
+
+        // สร้าง URL สำหรับหน้า cart.html พร้อมกับการส่งพารามิเตอร์รูปภาพและราคา
+        var cartUrl = "/cart?image=" + encodeURIComponent(imageUrl) + "&price=" + encodeURIComponent(price);
+
+    });
+</script>
 
 
+{% endblock %} {% endcomment %}
 
+{% block content %}
+<section class="content-section content-section-single">
+    <div class="content-container">
+        {% if game is not None %}
+        <div class="grid grid-2">
+            <img class="image-block" src="{% static game.image_relative_url %}" alt="">
+            <div>
+                <h1 class="text-center game-title">{{ game.title }}</h1>
+                <h3 class="text-center">Genre: {{ game.genre }}</h3>
+                <h3 class="text-center">Price: {{ game.price|floatformat:'g' }} USD</h3>
+                <h3 class="text-center">Release Year: {{ game.initial_release|date:'Y' }}</h3>
+                <h3 class="text-center">Synopsis: {{ game.description }}</h3>
+                <h3 class="text-center">
+                    <button id="add-to-cart-btn-game" class="button button-primary">Add to cart</button>
+                </h3>
+            </div>
+        </div>
+        {% else %}
+        <p>This game is not found</p>
+        {% endif %}
+    </div>
+</section>
+
+<script>
+    document.getElementById("add-to-cart-btn-game").addEventListener("click", function() {
+        var game_id = "{{ game.id }}";
+        fetch('/cart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({'game_id': game_id})
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            console.log('Game Title: ' + data.game_title);
+            console.log('Game Price: ' + data.game_price);
+            // เก็บข้อมูลเกมไว้ใน localStorage โดยไม่ทับข้อมูลที่มีอยู่แล้ว
+            var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            cartItems.push({
+                // เปลี่ยน imageUrl เป็น game_title, game_price, genre, initial_release หรืออื่น ๆ ตามที่ต้องการ
+                game_title: data.game_title,
+                game_price: data.game_price,
+                genre: data.genre,
+                initial_release: data.initial_release
+            });
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        })
+        .catch(error => console.error('Error:', error));
+    });
+</script>
+
+    
 {% endblock %}
+

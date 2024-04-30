@@ -3,6 +3,12 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from app_general.forms import RegisterModelForm
 from .models import Register
+from app_gamelist.models import Game
+from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+
 
 def home(request):
     return render(request,'app_general/home.html')
@@ -23,3 +29,31 @@ def register(request):
 
 def register_thankyou(request):
     return render(request,'app_general/register_thankyou.html')
+
+@csrf_exempt
+def cart(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        game_id = data.get('game_id')
+        game = get_object_or_404(Game, id=game_id)
+        cart_image = game.image_relative_url
+        cart_title = game.title
+        cart_genre = game.genre  
+        cart_release_year = game.initial_release  
+        cart_price = game.price
+        response_data = {
+            'message': 'Added to cart successfully',
+            'game_title': cart_title,
+            'game_price': cart_price,
+            'game_image': cart_image,
+            'genre': cart_genre,  
+            'release_year': cart_release_year  
+        }
+        return JsonResponse(response_data)
+    else:
+        return render(request, 'app_general/cart.html')
+
+
+
+def checkout(request):
+    return render(request,'app_general/checkout.html')

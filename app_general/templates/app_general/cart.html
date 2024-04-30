@@ -1,0 +1,129 @@
+{% extends 'app_general/components/base.html' %}
+{% load static %}
+{% block site_title %}
+  Order Confirmation |
+{% endblock %}
+
+{% block content %}
+  <section class="content-section content-section-single">
+    <div class="content-container">
+      <h2 class="content-title">{{ user.username }}'s Cart</h2>
+      <h4 id="total-price" class="text-center">Total Price: <span id="total-price-value">0</span></h4>
+
+      <div class="grid grid-2" id="cart-container" style="border: 1px solid #000; padding: 20px; border-radius: 20px;">
+        <script>
+          var cartItems = JSON.parse(localStorage.getItem('cartItems')) || []
+          var totalPrice = 0
+          cartItems.forEach(function (cartItem) {
+            var title = cartItem.game_title
+            var genre = cartItem.genre
+            var price = cartItem.game_price
+            totalPrice += price
+            var releaseYear = cartItem.initial_release
+          
+            var titleElement = document.createElement('h4')
+            titleElement.className = 'text-center game-title'
+            titleElement.textContent = title
+            document.getElementById('cart-container').appendChild(titleElement)
+          
+            var priceElement = document.createElement('h4')
+            priceElement.className = 'text-center'
+            priceElement.textContent = 'Price: ' + price + ' USD'
+            document.getElementById('cart-container').appendChild(priceElement)
+          })
+          
+          var totalPriceElement = document.getElementById('total-price-value')
+          if (totalPriceElement) {
+            totalPriceElement.textContent = 'Total Price: ' + totalPrice + ' USD'
+          }
+          console.log(totalPrice)
+        </script>
+      </div>
+
+      <p class="text-center">
+        <button id="checkout" class="button button-primary" style="margin-top: 5px;">Checkout</button>
+      </p>
+    </div>
+  </section>
+
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Please enter your credit card number:</p>
+      <input type="text" id="creditCardInput" />
+      <button class="button button-primary" id="completePayment" style="margin-top: 15px;">Complete</button>
+    </div>
+  </div>
+
+  <style>
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%; 
+      height: 100%; 
+      overflow: auto; 
+      background-color: rgb(0, 0, 0); 
+      background-color: rgba(0, 0, 0, 0.4); 
+    }
+    
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto; 
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%; 
+      border-radius: 20px;
+    }
+    
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    #completePayment {
+      display: block;
+      margin: 0 auto; 
+    }
+  </style>
+
+  <script>
+    var modal = document.getElementById('myModal')
+    
+    var btn = document.getElementById('checkout')
+    
+    var span = document.getElementsByClassName('close')[0]
+    
+    btn.onclick = function () {
+      modal.style.display = 'block'
+    }
+    
+    span.onclick = function () {
+      modal.style.display = 'none'
+    }
+    
+    document.getElementById("completePayment").onclick = function() {
+        
+        var creditCardInput = document.getElementById("creditCardInput").value;
+        if (creditCardInput.trim() === '') {
+            alert("Please enter your credit card number.");
+        } else {
+            localStorage.removeItem('cartItems');
+            modal.style.display = "none";
+            alert("Your payment of " + totalPrice + " USD" + " has been successfully processed. Thank you for your prompt payment.");
+        }
+    }
+  </script>
+
+{% endblock %}

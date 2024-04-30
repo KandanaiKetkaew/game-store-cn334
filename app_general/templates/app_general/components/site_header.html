@@ -11,7 +11,7 @@
         <span>About us</span>
     </a>
     {% if user.is_authenticated %}
-        <a class="site-header-item" href="{% url 'dashboard' %}">
+        <a class="site-header-item" href="{% url 'profile' %}">
             <span>{{ user.username }}</span>
         </a>
         <form class="site-header-item" action="{% url 'logout' %}" method="post">
@@ -26,4 +26,11 @@
             <span>Create Account</span>
         </a>
     {% endif %}
+    
+    {% if user.is_authenticated %}
+    <a class="site-header-item" href="{% url 'cart' %}" style="margin-left: auto;">
+        <img src="{% static 'app_general/cart.png' %}" alt="Cart" style="width: 40px; height: 40px;">
+    </a>
+{% endif %}
+
 </header>
