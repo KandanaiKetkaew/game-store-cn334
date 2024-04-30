@@ -38,11 +38,16 @@ def cart(request):
         game = get_object_or_404(Game, id=game_id)
         cart_image = game.image_relative_url
         cart_title = game.title
+        cart_genre = game.genre  
+        cart_release_year = game.initial_release  
         cart_price = game.price
         response_data = {
             'message': 'Added to cart successfully',
             'game_title': cart_title,
-            'game_price': cart_price
+            'game_price': cart_price,
+            'game_image': cart_image,
+            'genre': cart_genre,  
+            'release_year': cart_release_year  
         }
         return JsonResponse(response_data)
     else:

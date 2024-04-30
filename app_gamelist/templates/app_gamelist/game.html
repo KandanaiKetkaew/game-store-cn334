@@ -86,12 +86,17 @@
             console.log('Game Price: ' + data.game_price);
             // เก็บข้อมูลเกมไว้ใน localStorage โดยไม่ทับข้อมูลที่มีอยู่แล้ว
             var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-            cartItems.push(data);
+            cartItems.push({
+                // เปลี่ยน imageUrl เป็น game_title, game_price, genre, initial_release หรืออื่น ๆ ตามที่ต้องการ
+                game_title: data.game_title,
+                game_price: data.game_price,
+                genre: data.genre,
+                initial_release: data.initial_release
+            });
             localStorage.setItem('cartItems', JSON.stringify(cartItems));
         })
         .catch(error => console.error('Error:', error));
     });
-    
 </script>
 
     
