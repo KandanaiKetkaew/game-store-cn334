@@ -1,0 +1,51 @@
+{% extends 'app_general/components/base.html' %}
+{% load static %}
+{% block site_title %}Order Comfirmation | {% endblock %}
+
+{% comment %} {%block content%}
+<section class="content-section content-section-single">
+    <div class="content-container">
+        <h2 class="content-title text-center">Order Confirmation</h2>
+    </div>
+    <h3 class="text-center">
+        <a class="button button-primary" href="{% url 'checkout' %}">Checkout</a>
+    </h3>
+</section>
+{% endblock %} {% endcomment %}
+
+{% block content %}
+<section class="content-section content-section-single">
+    <div class="content-container">
+        <h2 class="content-title">Your Cart</h2>
+        <div class="grid grid-3" id="cart-container">
+            <!-- ใช้ JavaScript ในการวนลูปข้อมูลทั้งหมดใน localStorage เพื่อแสดงในหน้านี้ -->
+            <script>
+                var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                cartItems.forEach(function(cartItem) {
+                    var image = cartItem.image;
+                    var title = cartItem.game_title;
+                    var price = cartItem.game_price;
+
+                    var imageElement = document.createElement('img');
+                    imageElement.className = 'image-block';
+                    imageElement.src = image;
+                    imageElement.alt = 'Game Image';
+                    document.getElementById('cart-container').appendChild(imageElement);
+
+                    var titleElement = document.createElement('h3');
+                    titleElement.className = 'text-center game-title';
+                    titleElement.textContent = title;
+                    document.getElementById('cart-container').appendChild(titleElement);
+
+                    var priceElement = document.createElement('h4');
+                    priceElement.className = 'text-center';
+                    priceElement.textContent = 'Price: ' + price + ' USD';
+                    document.getElementById('cart-container').appendChild(priceElement);
+                });
+            </script>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

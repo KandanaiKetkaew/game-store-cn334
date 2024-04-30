@@ -4,7 +4,6 @@ from django.http.response import HttpResponse
 from .models import Game
 
 
-
 def games(request):
     all_games = Game.objects.all()
     context = {'games': all_games}
